@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Tracker | Modern Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Outfit -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: #f8fafc;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+      }
+      .custom-shadow {
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-800 p-4 sm:p-6 lg:p-10">
+    <div class="max-w-6xl mx-auto">
+      <!-- Dashboard Header -->
+      <header class="mb-10">
+        <h1 class="text-3xl font-bold text-[#1e293b] tracking-tight">
+          Job Application Tracker
+        </h1>
+      </header>
+
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Total Card -->
+        <div
+          class="glass-card p-6 rounded-2xl custom-shadow flex flex-col justify-between"
+        >
+          <div>
+            <span class="text-slate-500 font-medium text-sm">Total</span>
+            <h2 id="total-card" class="text-4xl font-bold text-slate-900 mt-2">
+              0
+            </h2>
+          </div>
+        </div>
+        <!-- Interview Card -->
+        <div
+          class="glass-card p-6 rounded-2xl custom-shadow flex flex-col justify-between group"
+        >
+          <div>
+            <span class="text-slate-500 font-medium text-sm">Interview</span>
+            <h2
+              id="interview-card"
+              class="text-4xl font-bold text-emerald-500 mt-2"
+            >
+              0
+            </h2>
+          </div>
+        </div>
+        <!-- Rejected Card -->
+        <div
+          class="glass-card p-6 rounded-2xl custom-shadow flex flex-col justify-between"
+        >
+          <div>
+            <span class="text-slate-500 font-medium text-sm">Rejected</span>
+            <h2
+              id="rejected-card"
+              class="text-4xl font-bold text-rose-500 mt-2"
+            >
+              0
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-slate-200 mb-10" />
+
+      <!-- Available Jobs Section -->
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4"
+      >
+        <h2 class="text-2xl font-bold text-[#1e293b]">Available Jobs</h2>
+        <div class="flex items-center gap-2">
+          <span
+            id="available-jobs"
+            class="text-sm font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full"
+            >8 jobs</span
+          >
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <button
+          onclick="toggleBtn('all-btn')"
+          id="all-btn"
+          class="px-6 py-2.5 glass-card bg-blue-600 text-white text-sm font-semibold rounded-xl  active:scale-95"
+        >
+          All
+        </button>
+        <button
+          onclick="toggleBtn('interview-btn')"
+          id="interview-btn"
+          class="px-6 py-2.5 glass-card text-slate-600 text-sm font-semibold rounded-xl  active:scale-95"
+        >
+          Interview
+        </button>
+        <button
+          onclick="toggleBtn('rejected-btn')"
+          id="rejected-btn"
+          class="px-6 py-2.5 glass-card text-slate-600 text-sm font-semibold rounded-xl  active:scale-95"
+        >
+          Rejected
+        </button>
+      </div>
+
+      
+      <div id="job" class="grid grid-cols-1 gap-6">
+        
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">Mobile First Corp</h3>
+            <p class="sub-title text-slate-600 font-medium">React Native Developer</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+          <p> Remote Full-time  $80,000 - $110,000</p>
+          
+         
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Build cross-platform mobile applications using React Native. Work on
+            products used by millions of users worldwide.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+
+        <!-- job cards  -->
+
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">
+              CloudScale Dynamics
+            </h3>
+            <p class="sub-title text-slate-600 font-medium">Senior DevOps Engineer</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+          <p> Remote Full-time $130,000 - $165,000</p>
+          
+          
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Design and maintain CI/CD pipelines, manage cloud infrastructure on
+            AWS, and implement monitoring solutions for high-availability
+            systems.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">
+              Pixel & Code Studio
+            </h3>
+            <p class="sub-title text-slate-600 font-medium">UI/UX Product Designer</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+            <p> Hybrid Contract  $70,000 - $95,000</p>
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Create intuitive user interfaces and seamless experiences for web
+            and mobile applications. Lead design sprints and user testing
+            sessions.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">DataWise Analytics</h3>
+            <p class="sub-title text-slate-600 font-medium">Machine Learning Engineer</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+          <p> Remote Full-time $115,000 - $150,000</p>
+          
+         
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Develop and deploy machine learning models for predictive analytics.
+            Work with large datasets and optimize model performance.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">
+              FinTech Innovations
+            </h3>
+            <p class="sub-title text-slate-600 font-medium">Backend Engineer - Python</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+            <p> On-site Full-time $95,000 - $125,000</p>
+             
+            
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Build scalable APIs and microservices for financial applications.
+            Ensure data security and compliance with industry regulations.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">
+              GrowthStream Marketing
+            </h3>
+            <p class="sub-title text-slate-600 font-medium">Digital Marketing Manager</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+            <p> Hybrid Full-time $75,000 - $95,000</p>
+            
+            
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Lead SEO, content strategy, and paid advertising campaigns. Analyze
+            market trends and optimize conversion funnels.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">
+              SecureNet Solutions
+            </h3>
+            <p class="sub-title text-slate-600 font-medium">Cybersecurity Analyst</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+          <p> Remote Full-time $105,000 - $135,000</p>
+          
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Monitor security threats, conduct vulnerability assessments, and
+            implement security protocols to protect company assets.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="myjobs glass-card p-8 rounded-2xl custom-shadow relative group"
+        >
+          <div
+             
+            class=" delete-btn absolute top-8 right-8 cursor-pointer opacity-40 hover:opacity-100 transition-opacity"
+          >
+            <img src="assets/Trash.png" alt="" />
+          </div>
+          <div class="mb-2">
+            <h3 class="text-xl font-bold text-[#1e293b] job-title">GreenLeaf Energy</h3>
+            <p class="sub-title text-slate-600 font-medium">Sustainability Consultant</p>
+          </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 mb-6 font-medium more-info"
+          >
+            <p>Hybrid Part-time $60,000 - $80,000</p>
+            
+          </div>
+          <div class="mb-5">
+            <span
+              
+              class="px-3 py-1 bg-slate-100 not-applied text-[#475569] text-[10px] font-bold rounded-lg uppercase tracking-[0.1em] border border-slate-200 status"
+              >Not Applied</span
+            >
+          </div>
+          <p class="text-slate-600 text-[15px] mb-8 leading-relaxed max-w-4xl description">
+            Advise businesses on sustainable practices, conduct environmental
+            impact assessments, and develop green strategy roadmaps.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              
+              class="interview-btn px-6 py-2.5 border-2 border-emerald-100 text-emerald-600 text-xs font-bold rounded-xl hover:bg-emerald-50 hover:border-emerald-200 transition-all uppercase tracking-wider"
+            >
+              Interview
+            </button>
+            <button
+              
+              class="rejected-btn px-6 py-2.5 border-2 border-rose-100 text-rose-600 text-xs font-bold rounded-xl hover:bg-rose-50 hover:border-rose-200 transition-all uppercase tracking-wider"
+            >
+              Rejected
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="filter-box" class="grid grid-cols-1 gap-6 hidden">
+
+      </div>
+      <!-- no job lists  -->
+      <div
+        id="no-job"
+        class="hidden glass-card rounded-2xl custom-shadow flex flex-col items-center mt-8 p-10 gap-4"
+      >
+        <img src="assets/file.png" alt="" />
+        <p class="text-xl font-bold text-[#1e293b] job-title">No Jobs Available</p>
+        <p class="text-slate-500 text-sm">
+          Check back soon for new job opportunities
+        </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
