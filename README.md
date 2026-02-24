@@ -49,6 +49,8 @@ now if we cliked on the button the console will show both "div Clicked" and "btn
 
 we create a function that will help us handle multiple child element from parent element using event.target this saves us typing multiple event listeners 
 
-5. What is the difference between preventDefault() and stopPropagation() methods? 
+5 . What is the difference between preventDefault() and stopPropagation() methods? 
 
-preventDefault() stops the default actions stopPropagation() stops the event bubbling
+preventDefault() stops the default actions stop
+
+Propagation() stops the event bubbling
