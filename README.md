@@ -55,12 +55,21 @@ container.appendChild(paragraph);
 const myDiv = document.getElementById("myDiv");
 const myBtn = document.getElementById("myBtn");
 
+<<<<<<< HEAD
 myDiv.addEventListener("click", function () {
   console.log("Div Clicked");
 });
 
 myBtn.addEventListener("click", function () {
   console.log("Button Clicked");
+=======
+myDiv.addEventListener("click", function() {
+    console.log("Div Clicked");
+});
+
+myBtn.addEventListener("click", function() {
+    console.log("Button Clicked");
+>>>>>>> b6d4b6595c19ba3049a910e450b10ac3cb217bd3
 });
 ```
 
@@ -89,3 +98,7 @@ Div Clicked
 
 - **`preventDefault()`** → stops the **default browser action** of an element.
 - **`stopPropagation()`** → stops the **event from bubbling** to parent elements.
+<<<<<<< HEAD
+=======
+
+>>>>>>> b6d4b6595c19ba3049a910e450b10ac3cb217bd3
