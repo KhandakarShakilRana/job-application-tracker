@@ -103,7 +103,7 @@ document.addEventListener("click", function (event) {
     stats();
     stats();
 
-    // Re-render CURRENT active tab
+    
     if (activeTab === "interview") {
       renderInterviewList();
     }
