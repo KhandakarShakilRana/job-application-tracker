@@ -1,100 +1,54 @@
-# JavaScript DOM & Events FAQ
+1 .What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll? 
 
-## 1. Difference between `getElementById`, `getElementsByClassName`, and `querySelector` / `querySelectorAll`
+with getElementById means we can select the element with a unique ID name.
 
-- **`getElementById`** → selects an element with a **unique ID**.
-- **`getElementsByClassName`** → selects **multiple elements** with the same class.
-- **`querySelector`** → selects the **first matching element** using CSS selectors (`#idname` for ID, `.classname` for class).
-- **`querySelectorAll`** → selects **all matching elements** using CSS selectors (`.classname`, `p`, `button`, etc.).
+with getElementsByClassName means we can select multiple element under the same class name.
 
----
+with querySelector we can select both with id or class like we select in css for id '#idname' for class '.classname' and querySelector can select only select one element if we have multiple element with same classname ,it can only selects the first one. 
 
-## 2. How to create and insert a new element into the DOM
+with querySelectorAll we can select all the element by putting the class name '.classname' or any Tag (p/h1/button) this selects all the element available in the html 
 
-1. Create a new element:
+2.How do you create and insert a new element into the DOM? 
 
-```js
-const paragraph = document.createElement("p"); // can be div, h1, section, etc.
-```
+lets say we have a empty container in our html and to insert a new paragraph element we declare a veriable like this 
 
-2. Add content:
+const paragraph = document.createElement("p") // we can put any TagName here (div/h1/section) 
 
-```js
-paragraph.innerText = "This is my Paragraph";
-```
+now we can edit the content by typing 
 
-3. Select parent container:
+paragraph.innerText = "This is my Paragraph"
 
-```js
-const container = document.getElementById("container");
-```
+now we can push our new element to its parent by we selecting the container by ID 
 
-4. Insert the new element:
+const container = document.getElementById("container") now we can insert our element with append child method
+ 
+ container.appendChild(paragraph) 
 
-```js
-container.appendChild(paragraph);
-```
+3 . What is Event Bubbling? And how does it work?
 
----
-
-## 3. What is Event Bubbling and how does it work
-
-**Event Bubbling**: When an event occurs on a **child element**, it automatically **propagates up** to parent elements, triggering their event handlers.
-
-**Example:**
-
-```html
+lets say we have two event on both parent and child 
 <body>
-  <div id="myDiv">
-    <button id="myBtn">Click here</button>
-  </div>
-</body>
-```
-
-```js
-const myDiv = document.getElementById("myDiv");
-const myBtn = document.getElementById("myBtn");
-
-
-myDiv.addEventListener("click", function () {
+ <div id="mydiv"> 
+ <button id="mybtn">Click here</button> 
+ </div> 
+ </body> 
+ 
+ const myDiv = document.getElementById("myDiv"); 
+ const myBtn = document.getElementById("myBtn"); 
+ myDiv.addEventListener("click", function() {
   console.log("Div Clicked");
-});
+}); 
 
-myBtn.addEventListener("click", function () {
-  console.log("Button Clicked");
-=======
-myDiv.addEventListener("click", function() {
-    console.log("Div Clicked");
-});
+  myBtn.addEventListener("click", function() { 
+    console.log("Button Clicked"); 
+}); 
 
-myBtn.addEventListener("click", function() {
-    console.log("Button Clicked");
+now if we cliked on the button the console will show both "div Clicked" and "btn Clicked" this is event bubbling like any event happens in child it triggers parent event too.
 
-});
-```
+4 . What is Event Delegation in JavaScript? Why is it useful? 
 
-**Result:** Clicking the button logs:
+we create a function that will help us handle multiple child element from parent element using event.target this saves us typing multiple event listeners 
 
-```
-Button Clicked
-Div Clicked
-```
+5. What is the difference between preventDefault() and stopPropagation() methods? 
 
-- The event **starts at the child** and **bubbles up** to the parent.
-
----
-
-## 4. What is Event Delegation in JavaScript? Why is it useful?
-
-- **Event Delegation** allows us to **attach a single event listener** to a parent element to handle events on its **child elements** using `event.target`.
-- **Benefits:**
-  - Saves adding multiple event listeners.
-  - Works for dynamic elements added later.
-  - Makes code cleaner and more efficient.
-
----
-
-## 5. Difference between `preventDefault()` and `stopPropagation()`
-
-- **`preventDefault()`** → stops the **default browser action** of an element.
-- **`stopPropagation()`** → stops the **event from bubbling** to parent elements.
+preventDefault() stops the default actions stopPropagation() stops the event bubbling
