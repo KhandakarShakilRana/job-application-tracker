@@ -55,7 +55,7 @@ container.appendChild(paragraph);
 const myDiv = document.getElementById("myDiv");
 const myBtn = document.getElementById("myBtn");
 
-<<<<<<< HEAD
+
 myDiv.addEventListener("click", function () {
   console.log("Div Clicked");
 });
@@ -69,7 +69,7 @@ myDiv.addEventListener("click", function() {
 
 myBtn.addEventListener("click", function() {
     console.log("Button Clicked");
->>>>>>> b6d4b6595c19ba3049a910e450b10ac3cb217bd3
+
 });
 ```
 
@@ -86,7 +86,7 @@ Div Clicked
 
 ## 4. What is Event Delegation in JavaScript? Why is it useful?
 
-- **Event Delegation** allows you to **attach a single event listener** to a parent element to handle events on its **child elements** using `event.target`.
+- **Event Delegation** allows us to **attach a single event listener** to a parent element to handle events on its **child elements** using `event.target`.
 - **Benefits:**
   - Saves adding multiple event listeners.
   - Works for dynamic elements added later.
@@ -98,7 +98,3 @@ Div Clicked
 
 - **`preventDefault()`** → stops the **default browser action** of an element.
 - **`stopPropagation()`** → stops the **event from bubbling** to parent elements.
-<<<<<<< HEAD
-=======
-
->>>>>>> b6d4b6595c19ba3049a910e450b10ac3cb217bd3
