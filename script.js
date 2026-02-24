@@ -48,30 +48,18 @@ function toggleBtn(id) {
     activeTab = "interview";
     filterBox.classList.remove("hidden");
     jobList.classList.add("hidden");
-    if (interviewList.length === 0) {
-      noJob.classList.remove("hidden");
-    }else if(interviewList.length > 0){
-      noJob.classList.add("hidden");
-    }
+    checkNoJobSection();
     renderInterviewList();
   } else if (id === "all-btn") {
     activeTab = "all";
     filterBox.classList.add("hidden");
     jobList.classList.remove("hidden");
-    if (jobList.children.length === 0) {
-      noJob.classList.remove("hidden");
-    }else if(jobList.children.length > 0){
-      noJob.classList.add("hidden");
-    }
+      checkNoJobSection();
   } else if (id === "rejected-btn") {
     activeTab = "rejected";
     filterBox.classList.remove("hidden");
     jobList.classList.add("hidden");
-    if (rejectedList.length === 0) {
-      noJob.classList.remove("hidden");
-    }else if(rejectedList.length > 0){
-      noJob.classList.add("hidden");
-    }
+    checkNoJobSection();
     renderRejectedList();
   }
 }
@@ -176,26 +164,12 @@ document.addEventListener("click", function (event) {
     interviewList = interviewList.filter(item => item.jobTitle !== jobTitle);
     rejectedList = rejectedList.filter(item => item.jobTitle !== jobTitle);
 
-    if (activeTab === "interview") {
-      if (interviewList.length === 0) {
-        noJob.classList.remove("hidden");
-      } else {
-        noJob.classList.add("hidden");
-        renderInterviewList();
-      }
-    } else if (activeTab === "rejected") {
-      if (rejectedList.length === 0) {
-        noJob.classList.remove("hidden");
-      } else {
-        noJob.classList.add("hidden");
-        renderRejectedList();
-      }
-    } else if (activeTab === "all") {
-      if (jobList.children.length === 0) {
-        noJob.classList.remove("hidden");
-      } else {
-        noJob.classList.add("hidden");
-      }}
+
+if (activeTab === "interview") renderInterviewList();
+if (activeTab === "rejected") renderRejectedList();
+
+checkNoJobSection();
+
   }
   stats();
 });
@@ -321,3 +295,24 @@ function renderRejectedList() {
 }
 
 
+function checkNoJobSection() {
+  if (activeTab === "all") {
+    if (jobList.children.length === 0) {
+      noJob.classList.remove("hidden");
+    } else {
+      noJob.classList.add("hidden");
+    }
+  } else if (activeTab === "interview") {
+    if (interviewList.length === 0) {
+      noJob.classList.remove("hidden");
+    } else {
+      noJob.classList.add("hidden");
+    }
+  } else if (activeTab === "rejected") {
+    if (rejectedList.length === 0) {
+      noJob.classList.remove("hidden");
+    } else {
+      noJob.classList.add("hidden");
+    }
+  }
+}
