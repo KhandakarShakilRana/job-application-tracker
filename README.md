@@ -6,7 +6,7 @@ with getElementsByClassName means we can select multiple element under the same 
 
 with querySelector we can select both with id or class like we select in css for id '#idname' for class '.classname' and querySelector can select only select one element if we have multiple element with same classname ,it can only selects the first one. 
 
-with querySelectorAll we can select all the element by putting the class name '.classname' or any Tag (p/h1/button) this selects all the element available in the html 
+with querySelectorAll we can select all the element by putting the class name '.classname .classname2' or any Tag (p/h1/button) or multiple element with id like ('#id1 #id2')  this selects all the element available in the html 
 
 2.How do you create and insert a new element into the DOM? 
 
@@ -18,7 +18,7 @@ now we can edit the content by typing
 
 paragraph.innerText = "This is my Paragraph"
 
-now we can push our new element to its parent by we selecting the container by ID 
+now we can push our new element to its parent by we selecting the container 
 
 const container = document.getElementById("container") now we can insert our element with append child method
  
@@ -51,6 +51,6 @@ we create a function that will help us handle multiple child element from parent
 
 5 . What is the difference between preventDefault() and stopPropagation() methods? 
 
-preventDefault() stops the default actions stop
+preventDefault() stops the default actions
 
 Propagation() stops the event bubbling
